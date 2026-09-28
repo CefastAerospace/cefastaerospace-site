@@ -13,6 +13,19 @@ npm run dev
 
 Produção: `npm run build`. Revisão do resultado: `npm run preview`.
 
+## GitHub Pages
+
+Repositório: `https://github.com/CefastAerospace/cefastaerospace-site`.
+Branch de publicação: `landing-page`.
+O workflow `.github/workflows/pages.yml` compila e publica a cada push nessa branch.
+Em Settings → Pages, selecione GitHub Actions como Source antes do primeiro deploy.
+Endereço previsto após a publicação: `https://cefastaerospace.github.io/cefastaerospace-site/`.
+
+O Vite usa a base `/cefastaerospace-site/`. Para imagens de `public/` em componentes,
+use `${import.meta.env.BASE_URL}arquivo.jpg` para preservar o prefixo do Pages.
+Se o Windows bloquear o carregamento da configuração pelo esbuild, valide com
+`npm run build -- --configLoader runner`.
+
 ## Conteúdo
 
 - `src/data/site.ts`: navegação, história, missão, objetivos, indicadores e canais oficiais.
