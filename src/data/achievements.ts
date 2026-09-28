@@ -1,0 +1,2 @@
+export interface Achievement {id:string;year:string;competition:string;result:string;description:string}
+export const achievements:Achievement[] = [{id:'registro-1',year:'Ano a confirmar',competition:'Competição a confirmar',result:'Resultado a confirmar',description:'Este espaço receberá os marcos da equipe, com informações e resultados oficiais.'},{id:'registro-2',year:'Ano a confirmar',competition:'Próximo marco da trajetória',result:'Informações em preparação',description:'Novos registros serão incluídos após a confirmação da equipe.'}];
