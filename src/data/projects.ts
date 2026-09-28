@@ -1,0 +1,3 @@
+export interface Project {id:string; name:string; description:string; category:string; technologies:string[]; status:string; image:string|null; imageAlt:string; url:string|null}
+// Registros de demonstração; não representam projetos reais.
+export const projects:Project[] = [1,2].map(n=>({id:`projeto-${n}`,name:`Projeto ${String(n).padStart(2,'0')} — a confirmar`,description:'Nome, descrição e informações técnicas serão publicados após a validação da equipe.',category:'Categoria a confirmar',technologies:['Tecnologias a confirmar'],status:'Conteúdo em preparação',image:null,imageAlt:'',url:null}));
