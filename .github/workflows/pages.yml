@@ -2,7 +2,7 @@ name: Publish Aerospace to GitHub Pages
 
 on:
   push:
-    branches: [landing-page]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
