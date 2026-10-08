@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cefastaerospace.github.io/cefastaerospace-site/sitemap.xml
