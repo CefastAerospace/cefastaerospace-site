@@ -1,5 +1,8 @@
 import '@testing-library/jest-dom/vitest';
 
+// jsdom não implementa window.scrollTo; substitui por no-op silencioso.
+window.scrollTo = () => {};
+
 // jsdom does not implement IntersectionObserver; framer-motion's
 // whileInView viewport feature requires it, so provide a minimal stub.
 if (typeof window.IntersectionObserver === 'undefined') {
