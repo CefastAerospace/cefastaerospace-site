@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>CEFAST Aerospace | Engenharia que vai além</title>
+    <script>
+      // GitHub Pages SPA redirect: guarda a rota pedida, volta para a base
+      // e o script no index.html restaura o endereço original.
+      (function (l) {
+        var base = '/cefastaerospace-site/';
+        try {
+          var target = l.pathname.replace(base, base) + l.search + l.hash;
+          sessionStorage.setItem('cefast-spa-redirect', target);
+        } catch (e) { /* sessionStorage indisponível: cai na home */ }
+        l.replace(base);
+      }(window.location));
+    </script>
+  </head>
+  <body></body>
+</html>

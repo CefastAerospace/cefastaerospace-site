@@ -1,2 +1,30 @@
-import {MotionConfig} from 'framer-motion';import Navbar from './components/Navbar';import Hero from './components/Hero';import About from './components/About';import Projects from './components/Projects';import Achievements from './components/Achievements';import Team from './components/Team';import Sponsors from './components/Sponsors';import Contact from './components/Contact';import Footer from './components/Footer';
-export default function App(){return <MotionConfig reducedMotion="user"><a className="skip-link" href="#conteudo">Pular para o conteúdo</a><Navbar/><main id="conteudo"><Hero/><About/><Projects/><Achievements/><Team/><Sponsors/><Contact/></main><Footer/></MotionConfig>}
+import { useEffect } from 'react';
+import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Inicio from './pages/Inicio';
+import Sobre from './pages/Sobre';
+import Projetos from './pages/Projetos';
+import Conquistas from './pages/Conquistas';
+import Equipe from './pages/Equipe';
+import Patrocinadores from './pages/Patrocinadores';
+import Contato from './pages/Contato';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
+function Layout() {
+  return <MotionConfig reducedMotion="user"><ScrollToTop/><a className="skip-link" href="#conteudo">Pular para o conteúdo</a><Navbar/><main id="conteudo"><Outlet/></main><Footer/></MotionConfig>;
+}
+
+export function AppRoutes() {
+  return <Routes><Route element={<Layout/>}><Route index element={<Inicio/>}/><Route path="sobre" element={<Sobre/>}/><Route path="projetos" element={<Projetos/>}/><Route path="conquistas" element={<Conquistas/>}/><Route path="equipe" element={<Equipe/>}/><Route path="patrocinadores" element={<Patrocinadores/>}/><Route path="contato" element={<Contato/>}/><Route path="*" element={<Navigate to="/" replace/>}/></Route></Routes>;
+}
+
+export default function App() {
+  return <BrowserRouter basename={import.meta.env.BASE_URL}><AppRoutes/></BrowserRouter>;
+}
