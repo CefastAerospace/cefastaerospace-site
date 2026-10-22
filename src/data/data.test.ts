@@ -4,9 +4,16 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { contacts, navigation, metrics } from './site';
 import { sponsors } from './sponsors';
+import { team } from './team';
+import { projects } from './projects';
 import { achievements } from './achievements';
 
 describe('src/data integrity', () => {
+  const registrados = [
+    ...team.map((m) => ({ nome: m.name, foto: m.photo })),
+    ...projects.map((p) => ({ nome: p.name, foto: p.image })),
+  ];
+
   it('os ids e paths do menu são únicos e possuem rótulos', () => {
     const ids = navigation.map((n) => n.id);
     const paths = navigation.map((n) => n.path);
@@ -50,6 +57,18 @@ describe('src/data integrity', () => {
         // e o macOS volta a servir o arquivo mesmo com o nome escrito diferente do caminho.
         expect(readFileSync(join(process.cwd(), 'public', s.logo), 'utf8').length).toBeGreaterThan(0);
         expect(readdirSync(join(process.cwd(), 'public', dirname(s.logo)))).toContain(basename(s.logo));
+      }
+    });
+  });
+
+  it('fotos de equipe e projetos existem em public/ e usam caminho relativo à base', () => {
+    // Mesmo padrão dos logos: caminho absoluto quebra no GitHub Pages (base /cefastaerospace-site/).
+    registrados.forEach((registro) => {
+      const foto = registro.foto;
+      if (foto) {
+        expect(foto.startsWith('/'), `foto de "${registro.nome}" não pode usar caminho absoluto`).toBe(false);
+        expect(existsSync(join(process.cwd(), 'public', foto)), `foto "${registro.nome}" (${foto}) não existe em public/`).toBe(true);
+        expect(readdirSync(join(process.cwd(), 'public', dirname(foto)))).toContain(basename(foto));
       }
     });
   });
