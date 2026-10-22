@@ -1,5 +1,6 @@
 import { join } from 'node:path';
-import { existsSync, readFileSync } from 'node:fs';
+import { basename, dirname } from 'node:path';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { contacts, navigation, metrics } from './site';
 import { sponsors } from './sponsors';
@@ -45,6 +46,10 @@ describe('src/data integrity', () => {
       if (s.logo) {
         expect(s.logo.startsWith('/'), `logo "${s.name}" não pode usar caminho absoluto`).toBe(false);
         expect(existsSync(join(process.cwd(), 'public', s.logo)), `logo "${s.name}" (${s.logo}) não existe em public/`).toBe(true);
+        // Checagem sensível a maiúsculas: o deploy roda em filesystem Linux ( case-sensitive ),
+        // e o macOS volta a servir o arquivo mesmo com o nome escrito diferente do caminho.
+        expect(readFileSync(join(process.cwd(), 'public', s.logo), 'utf8').length).toBeGreaterThan(0);
+        expect(readdirSync(join(process.cwd(), 'public', dirname(s.logo)))).toContain(basename(s.logo));
       }
     });
   });
