@@ -1,5 +1,5 @@
 import {ArrowUpRight,Plus} from 'lucide-react';import {Link} from 'react-router-dom';import {sponsors,sponsorTiers} from '../data/sponsors';import {Section} from './Shared';
-export default function Sponsors(){return <Section id="patrocinadores" number="05" eyebrow="CONEXÕES QUE IMPULSIONAM" title="Juntos, podemos ir além."><p className="section-description">Um espaço dedicado às organizações que apoiam a equipe e o desenvolvimento aeroespacial.</p><div className="sponsor-tiers">{sponsorTiers.map(t=><div className={`sponsor-tier ${t.id}`} key={t.id}><h3>{t.label}</h3>{sponsors.filter(s=>s.tier===t.id).map(s=>{
+export default function Sponsors(){return <Section id="patrocinadores" title="Juntos, podemos ir além."><p className="section-description">Um espaço dedicado às organizações que apoiam a equipe e o desenvolvimento aeroespacial.</p><div className="sponsor-tiers">{sponsorTiers.map(t=><div className={`sponsor-tier ${t.id}`} key={t.id}><h3>{t.label}</h3>{sponsors.filter(s=>s.tier===t.id).map(s=>{
   // logo: src relativo à base do site (GitHub Pages roda em /cefastaerospace-site/).
   // Sponsor real sem logo ainda (Gedai) ganha slot tipográfico; "Em captação" mantém o slot de placeholder.
   const content=s.logo

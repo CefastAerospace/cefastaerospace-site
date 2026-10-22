@@ -41,6 +41,15 @@ describe('App (estrutura multi-página)', () => {
     });
   });
 
+  it('nenhuma página exibe o rótulo numerado "NN / EYEBROW" no topo das seções', () => {
+    // Regressão: feedback do board (22/10/2026) — remover o "01 / QUEM SOMOS" de todas as páginas.
+    ['/sobre', '/projetos', '/conquistas', '/equipe', '/patrocinadores', '/contato', '/projetos/fcp-01'].forEach((route) => {
+      const view = renderAt(route);
+      expect(view.container.querySelector('.section-label'), `página ${route}`).toBeNull();
+      view.unmount();
+    });
+  });
+
   it('os CTAs do Hero navegam para equipe e patrocinadores', () => {
     renderAt('/');
     expect(screen.getByRole('link', { name: /Conheça a equipe/ })).toHaveAttribute('href', '/equipe');
