@@ -8,3 +8,4 @@
 
 .navbar nav a[aria-current="page"]{color:var(--color-aerospace)}
 .footer-nav a[aria-current="page"]{color:var(--color-aerospace)}
+.sponsor-name{font-family:var(--font-display);font-weight:500;font-size:1.1rem;color:#dce7f0;text-align:center}

@@ -1,7 +1,8 @@
 import { join } from 'node:path';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { contacts, navigation } from './site';
+import { sponsors } from './sponsors';
 
 describe('src/data integrity', () => {
   it('os ids e paths do menu são únicos e possuem rótulos', () => {
@@ -27,11 +28,22 @@ describe('src/data integrity', () => {
     });
   });
 
-  it('contatos usam apenas https:// ou mailto:', () => {
+  it('contatos usam apenas https://, mailto: ou tel:', () => {
     contacts.forEach((c) => {
       if (c.url !== null) {
-        expect(c.url.startsWith('https://') || c.url.startsWith('mailto:')).toBe(true);
+        const validPrefix = c.url.startsWith('https://') || c.url.startsWith('mailto:') || c.url.startsWith('tel:');
+        expect(validPrefix).toBe(true);
         expect(c.url).not.toMatch(/\s/);
+      }
+    });
+  });
+
+  it('logos de patrocinadores existem em public/ e usam caminho relativo à base', () => {
+    // Regressão: logos com caminho absoluto quebram no GitHub Pages (base /cefastaerospace-site/) → 404 invisível.
+    sponsors.forEach((s) => {
+      if (s.logo) {
+        expect(s.logo.startsWith('/'), `logo "${s.name}" não pode usar caminho absoluto`).toBe(false);
+        expect(existsSync(join(process.cwd(), 'public', s.logo)), `logo "${s.name}" (${s.logo}) não existe em public/`).toBe(true);
       }
     });
   });
