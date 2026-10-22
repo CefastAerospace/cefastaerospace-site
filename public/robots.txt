@@ -1,0 +1,14 @@
+# robots.txt para CEFAST Aerospace Site
+# Permite todos os crawlers acessarem o site
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://cefastaerospace.github.io/cefastaerospace-site/sitemap.xml
+
+# Não rastrear arquivos de build ou admin
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /dist/
+Disallow: /src/

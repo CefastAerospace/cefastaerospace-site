@@ -1,1 +1,43 @@
-{"name":"cefast-aerospace","private":true,"version":"1.0.0","type":"module","scripts":{"dev":"vite --host 127.0.0.1","build":"tsc -b && vite build && cp 404.html dist/404.html","preview":"vite preview --host 127.0.0.1","test":"vitest run"},"dependencies":{"@fontsource/inter":"^5.2.0","@fontsource/space-grotesk":"^5.2.0","framer-motion":"^12.0.0","lucide-react":"^0.468.0","react":"^19.1.0","react-dom":"^19.1.0","react-router-dom":"^7.18.4"},"devDependencies":{"@tailwindcss/vite":"^4.1.0","@testing-library/jest-dom":"^7.0.1","@testing-library/react":"^16.3.3","@testing-library/user-event":"^14.6.8","@types/jsdom":"^30.0.0","@types/react":"^19.1.0","@types/react-dom":"^19.1.0","@vitejs/plugin-react":"^4.4.0","jsdom":"^30.1.3","tailwindcss":"^4.1.0","typescript":"~5.8.3","vite":"^6.3.0","vitest":"^5.0.5"}}
+{
+  "name": "cefast-aerospace",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build && cp 404.html dist/404.html && node scripts/generate-sitemap.js",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "lint": "eslint . --ext ts,tsx --max-warnings 0"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.0",
+    "@fontsource/space-grotesk": "^5.2.0",
+    "framer-motion": "^12.0.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/vite": "^4.1.0",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.8",
+    "@types/jsdom": "^30.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^4.4.0",
+    "eslint": "^10.13.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
+    "jsdom": "^30.1.3",
+    "tailwindcss": "^4.1.0",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.72.0",
+    "vite": "^6.3.0",
+    "vitest": "^5.0.5"
+  }
+}
