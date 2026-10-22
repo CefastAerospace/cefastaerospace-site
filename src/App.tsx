@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Inicio from './pages/Inicio';
 import Sobre from './pages/Sobre';
 import Projetos from './pages/Projetos';
+import FCP01 from './pages/FCP01';
 import Conquistas from './pages/Conquistas';
 import Equipe from './pages/Equipe';
 import Patrocinadores from './pages/Patrocinadores';
@@ -22,7 +23,21 @@ function Layout() {
 }
 
 export function AppRoutes() {
-  return <Routes><Route element={<Layout/>}><Route index element={<Inicio/>}/><Route path="sobre" element={<Sobre/>}/><Route path="projetos" element={<Projetos/>}/><Route path="conquistas" element={<Conquistas/>}/><Route path="equipe" element={<Equipe/>}/><Route path="patrocinadores" element={<Patrocinadores/>}/><Route path="contato" element={<Contato/>}/><Route path="*" element={<Navigate to="/" replace/>}/></Route></Routes>;
+  return (
+    <Routes>
+      <Route element={<Layout/>}>
+        <Route index element={<Inicio/>} />
+        <Route path="sobre" element={<Sobre/>} />
+        <Route path="projetos" element={<Projetos/>} />
+        <Route path="projetos/fcp-01" element={<FCP01/>} />
+        <Route path="conquistas" element={<Conquistas/>} />
+        <Route path="equipe" element={<Equipe/>} />
+        <Route path="patrocinadores" element={<Patrocinadores/>} />
+        <Route path="contato" element={<Contato/>} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+    </Routes>
+  );
 }
 
 export default function App() {
