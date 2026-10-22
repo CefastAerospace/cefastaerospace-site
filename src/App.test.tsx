@@ -52,6 +52,14 @@ describe('App (estrutura multi-página)', () => {
     expect(screen.getByRole('heading', { level: 1, name: /CEFAST/i })).toBeInTheDocument();
   });
 
+  it('conquistas exibem somente a história, em ordem crescente (sem 2026)', () => {
+    // Regressão: a timeline misturou "2026 em preparação" com conquistas passadas.
+    renderAt('/conquistas');
+    const anos = screen.getAllByText(/^\d{4}$/).map((el) => Number(el.textContent));
+    expect(anos).toEqual([2020, 2022, 2025]);
+    expect(screen.queryByText(/Em preparação/i)).not.toBeInTheDocument();
+  });
+
   it('exibe o skip-link e o landmark principal em qualquer página', () => {
     renderAt('/equipe');
     expect(screen.getByRole('link', { name: 'Pular para o conteúdo' })).toHaveAttribute('href', '#conteudo');

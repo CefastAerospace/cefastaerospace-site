@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { contacts, navigation } from './site';
 import { sponsors } from './sponsors';
+import { achievements } from './achievements';
 
 describe('src/data integrity', () => {
   it('os ids e paths do menu são únicos e possuem rótulos', () => {
@@ -45,6 +46,21 @@ describe('src/data integrity', () => {
         expect(s.logo.startsWith('/'), `logo "${s.name}" não pode usar caminho absoluto`).toBe(false);
         expect(existsSync(join(process.cwd(), 'public', s.logo)), `logo "${s.name}" (${s.logo}) não existe em public/`).toBe(true);
       }
+    });
+  });
+
+  it('conquistas têm anos reais distintos e em ordem crescente (história, sem eventos futuros)', () => {
+    // Regressão: a linha do tempo já apareceu bagunçada; eventos "em preparação" (ex. 2026) devem
+    // ficar em projects.ts, nunca aqui — componente também ordena, mas os dados não podem mentir.
+    const years = achievements.map((a) => Number.parseInt(a.year, 10));
+    expect(years.length).toBeGreaterThan(0);
+    achievements.forEach((a) => expect(Number.isFinite(Number.parseInt(a.year, 10)) && /^\d{4}$/.test(a.year), `ano inválido em "${a.id}"`).toBe(true));
+    years.forEach((y) => expect(y, 'conquistas guardam somente anos passados').toBeLessThanOrEqual(new Date().getFullYear()));
+    expect(new Set(years).size).toBe(years.length);
+    expect(years).toEqual([...years].sort((a, b) => a - b));
+    achievements.forEach((a) => {
+      expect(a.result.trim().length).toBeGreaterThan(0);
+      expect(a.competition.trim().length).toBeGreaterThan(0);
     });
   });
 });
