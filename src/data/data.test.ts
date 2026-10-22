@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { contacts, navigation } from './site';
+import { contacts, navigation, metrics } from './site';
 import { sponsors } from './sponsors';
 import { achievements } from './achievements';
 
@@ -62,5 +62,18 @@ describe('src/data integrity', () => {
       expect(a.result.trim().length).toBeGreaterThan(0);
       expect(a.competition.trim().length).toBeGreaterThan(0);
     });
+  });
+
+  it('métricas têm número + rótulo + descrição, sem typo "A confirmar" e sem "Plataformas"', () => {
+    // Decisão do board: nada de placeholder fixo na faixa de métricas; volta "Projetos".
+    expect(metrics.map((m) => m.id)).toEqual(['membros', 'projetos', 'conquistas', 'anos']);
+    metrics.forEach((m) => {
+      expect(m.value.trim().length).toBeGreaterThan(0);
+      expect(m.label.trim().length).toBeGreaterThan(0);
+      expect(m.description.trim().length).toBeGreaterThan(0);
+      expect(`${m.value} ${m.label} ${m.description}`).not.toContain('A confirmar');
+    });
+    expect(metrics.some((m) => m.label === 'Plataformas')).toBe(false);
+    expect(metrics.some((m) => m.label === 'Projetos')).toBe(true);
   });
 });
