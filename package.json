@@ -13,6 +13,7 @@
   "dependencies": {
     "@fontsource/inter": "^5.2.0",
     "@fontsource/space-grotesk": "^5.2.0",
+    "@google/model-viewer": "^4.4.0",
     "framer-motion": "^12.0.0",
     "lucide-react": "^0.468.0",
     "react": "^19.1.0",
