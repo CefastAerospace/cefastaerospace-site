@@ -2,10 +2,18 @@ import { Link } from 'react-router-dom';
 import { usePageTitle } from './usePageTitle';
 import { ArrowLeft, Package, Radio, Cpu, Battery, Shield, Box, Calendar, MapPin, Target, Github } from 'lucide-react';
 import { Section } from '../components/Shared';
+import Model3D from '../components/Model3D';
 import type { CSSProperties } from 'react';
 
 const iconStyle: CSSProperties = { color: 'var(--cyan)' };
 const iconStyleSmall: CSSProperties = { color: 'var(--cyan)' };
+
+// Peças do FCP-01 exportadas do SolidWorks (GLB). Modelo completo do satélite em
+// breve — ver drive Mecânica/Modelos 3D Gerais e issue de pendências no GitHub.
+const models3d = [
+  { id: 'antenas', src: 'models/fcp-01-antenas.glb', label: 'Antenas', alt: 'Antenas do FCP-01 em modelo 3D interativo', note: 'Elementos de antena do sistema TT&C, para comunicação bidirecional com a estação terrena.' },
+  { id: 'painel', src: 'models/fcp-01-painel-solar.glb', label: 'Painel solar', alt: 'Painel solar do FCP-01 em modelo 3D interativo', note: 'Painel fotovoltaico do subsistema EPS&TC, responsável pela geração de energia em órbita.' },
+];
 
 const subsystems = [
   { id: 'obc-dh', icon: Cpu, title: 'OBC&DH', desc: 'Computador de bordo e tratamento de dados — gerencia todos os subsistemas, processamento de telemetria e comandos.' },
@@ -69,6 +77,26 @@ export default function FCP01() {
               </article>
             ))}
           </div>
+        </div>
+      </Section>
+
+      <Section id="fcp01-3d" title="Modelo 3D Interativo" aria-labelledby="models3d-title">
+        <div className="container">
+          <p className="section-description">Explore componentes do FCP-01 em 3D — arraste para rotacionar, use scroll ou pinça para aproximar. No celular, toque no ícone de realidade aumentada para projetar o modelo no seu ambiente.</p>
+          <div className="project-grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))'}}>
+            {models3d.map((m) => (
+              <article key={m.id} className="project-card" style={{textAlign: 'left'}}>
+                <div className="project-image" style={{height: 'auto', padding: '8px 0'}}>
+                  <Model3D src={m.src} alt={m.alt} />
+                </div>
+                <div className="project-body">
+                  <h3>{m.label}</h3>
+                  <p>{m.note}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="overline" style={{marginTop: '24px', textAlign: 'center'}}>Modelo 3D completo do satélite em breve</p>
         </div>
       </Section>
 
