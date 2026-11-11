@@ -2,8 +2,8 @@
 import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 
-const basePath = '/cefastaerospace-site';
-const hostname = 'https://cefastaerospace.github.io';
+const basePath = process.env.SITEMAP_BASE_PATH ?? '';
+const hostname = 'https://cefastaerospace.com.br';
 const routes = [
   '/',
   '/sobre',

@@ -48,7 +48,7 @@ describe('src/data integrity', () => {
   });
 
   it('logos de patrocinadores existem em public/ e usam caminho relativo à base', () => {
-    // Regressão: logos com caminho absoluto quebram no GitHub Pages (base /cefastaerospace-site/) → 404 invisível.
+    // Regressão: logos com caminho absoluto quebram no hosting estático (domínio próprio) → 404 invisível.
     sponsors.forEach((s) => {
       if (s.logo) {
         expect(s.logo.startsWith('/'), `logo "${s.name}" não pode usar caminho absoluto`).toBe(false);
@@ -62,7 +62,7 @@ describe('src/data integrity', () => {
   });
 
   it('fotos de equipe e projetos existem em public/ e usam caminho relativo à base', () => {
-    // Mesmo padrão dos logos: caminho absoluto quebra no GitHub Pages (base /cefastaerospace-site/).
+    // Mesmo padrão dos logos: caminho absoluto quebra no hosting estático (domínio próprio).
     registrados.forEach((registro) => {
       const foto = registro.foto;
       if (foto) {

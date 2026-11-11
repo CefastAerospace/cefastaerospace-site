@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://cefastaerospace.github.io/cefastaerospace-site/sitemap.xml
+Sitemap: https://cefastaerospace.com.br/sitemap.xml
 
 # Não rastrear arquivos de build ou admin
 Disallow: /node_modules/
