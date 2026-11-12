@@ -14,6 +14,7 @@ declare module 'react' {
         'ar-modes'?: string; 'camera-controls'?: string; 'auto-rotate'?: string;
         'rotation-per-second'?: string; 'shadow-intensity'?: string; exposure?: string;
         'interaction-prompt'?: string;
+      'draco-decoder-path'?: string; 'draco-decoder-type'?: string;
       };
     }
   }
@@ -46,6 +47,8 @@ export default function Model3D({src,alt,style}:Model3DProps){
       shadow-intensity="1"
       exposure="1"
       interaction-prompt="none"
+      draco-decoder-path={`${import.meta.env.BASE_URL}models/draco/`}
+      draco-decoder-type="wasm"
       style={{width:'100%',height:'300px',display:'block',background:'transparent',...style}}
     />
   );

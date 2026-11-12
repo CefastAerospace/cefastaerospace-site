@@ -7,8 +7,7 @@ import { usePageTitle } from './usePageTitle';
 
 // Mesmos GLBs da página do FCP-01 — fonte no Drive (Mecânica/Modelos 3D Gerais).
 const models3d = [
-  { id: 'antenas', src: 'models/fcp-01-antenas.glb', label: 'Antenas', alt: 'Antenas do FCP-01 em modelo 3D interativo' },
-  { id: 'painel', src: 'models/fcp-01-painel-solar.glb', label: 'Painel solar', alt: 'Painel solar do FCP-01 em modelo 3D interativo' },
+  { id: 'satelite', src: 'models/fcp-01-satelite.glb', label: 'FCP-01 — Falcão Peregrino', alt: 'Satélite FCP-01 em modelo 3D interativo' },
 ];
 
 export default function Inicio() {

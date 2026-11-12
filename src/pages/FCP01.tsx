@@ -8,11 +8,10 @@ import type { CSSProperties } from 'react';
 const iconStyle: CSSProperties = { color: 'var(--cyan)' };
 const iconStyleSmall: CSSProperties = { color: 'var(--cyan)' };
 
-// Peças do FCP-01 exportadas do SolidWorks (GLB). Modelo completo do satélite em
-// breve — ver drive Mecânica/Modelos 3D Gerais e issue de pendências no GitHub.
+// Modelo completo do FCP-01 (montagem SolidWorks "estrutura satélite (montada)"),
+// decodificado localmente e otimizado (simplificação 25% + Draco: 42,6 MB → 921 KB).
 const models3d = [
-  { id: 'antenas', src: 'models/fcp-01-antenas.glb', label: 'Antenas', alt: 'Antenas do FCP-01 em modelo 3D interativo', note: 'Elementos de antena do sistema TT&C, para comunicação bidirecional com a estação terrena.' },
-  { id: 'painel', src: 'models/fcp-01-painel-solar.glb', label: 'Painel solar', alt: 'Painel solar do FCP-01 em modelo 3D interativo', note: 'Painel fotovoltaico do subsistema EPS&TC, responsável pela geração de energia em órbita.' },
+  { id: 'satelite', src: 'models/fcp-01-satelite.glb', label: 'FCP-01 — Falcão Peregrino', alt: 'Satélite FCP-01 em modelo 3D interativo' },
 ];
 
 const subsystems = [
@@ -91,7 +90,6 @@ export default function FCP01() {
                 </div>
                 <div className="project-body">
                   <h3>{m.label}</h3>
-                  <p>{m.note}</p>
                 </div>
               </article>
             ))}
