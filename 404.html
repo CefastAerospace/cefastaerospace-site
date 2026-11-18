@@ -2,19 +2,20 @@
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    <title>CEFAST Aerospace | Engenharia que vai além</title>
-    <script>
-      // GitHub Pages SPA redirect: guarda a rota pedida, volta para a base
-      // e o script no index.html restaura o endereço original.
-      (function (l) {
-        var base = '/cefastaerospace-site/';
-        try {
-          var target = l.pathname.replace(base, base) + l.search + l.hash;
-          sessionStorage.setItem('cefast-spa-redirect', target);
-        } catch (e) { /* sessionStorage indisponível: cai na home */ }
-        l.replace(base);
-      }(window.location));
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Página não encontrada | CEFAST Aerospace</title>
+    <style>
+      body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #061321; color: #e6edf3; font-family: system-ui, -apple-system, sans-serif; text-align: center; padding: 24px; }
+      h1 { font-size: clamp(48px, 12vw, 96px); margin: 0 0 8px; letter-spacing: -2px; }
+      p { color: #8b9bb4; max-width: 420px; line-height: 1.6; }
+      a { display: inline-block; margin-top: 24px; padding: 12px 28px; border-radius: 999px; background: #22d3ee; color: #061321; font-weight: 700; text-decoration: none; }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <h1>404</h1>
+      <p>Esta página não existe ou foi movida. Volte para a página inicial da CEFAST Aerospace.</p>
+      <a href="/">Voltar ao início</a>
+    </main>
+  </body>
 </html>

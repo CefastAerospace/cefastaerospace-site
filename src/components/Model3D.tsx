@@ -14,7 +14,6 @@ declare module 'react' {
         'ar-modes'?: string; 'camera-controls'?: string; 'auto-rotate'?: string;
         'rotation-per-second'?: string; 'shadow-intensity'?: string; exposure?: string;
         'interaction-prompt'?: string;
-      'draco-decoder-path'?: string; 'draco-decoder-type'?: string;
       };
     }
   }
@@ -24,8 +23,14 @@ function useModelViewer(): boolean {
   const [ready,setReady] = useState(() => typeof customElements !== 'undefined' && !!customElements.get('model-viewer'));
   useEffect(() => {
     let mounted = true;
-    if (typeof customElements === 'undefined' || customElements.get('model-viewer')) return;
-    import('@google/model-viewer').then(() => { if (mounted) setReady(true); });
+    if (typeof customElements === 'undefined') return;
+    import('@google/model-viewer').then(({ModelViewerElement}) => {
+      // Doc oficial: o caminho do decoder Draco é config global na classe
+      // (não existe atributo draco-decoder-path). Self-hosted para não depender
+      // do CDN do Google, que redes institucionais podem bloquear.
+      ModelViewerElement.dracoDecoderLocation = `${import.meta.env.BASE_URL}models/draco/`;
+      if (mounted) setReady(true);
+    });
     return () => { mounted = false; };
   }, []);
   return ready;
@@ -47,8 +52,6 @@ export default function Model3D({src,alt,style}:Model3DProps){
       shadow-intensity="1"
       exposure="1"
       interaction-prompt="none"
-      draco-decoder-path={`${import.meta.env.BASE_URL}models/draco/`}
-      draco-decoder-type="wasm"
       style={{width:'100%',height:'300px',display:'block',background:'transparent',...style}}
     />
   );
