@@ -143,8 +143,10 @@ export default function ModelExplorer() {
         for (const part of parts) {
           const mat = part.object.material as import('three').MeshStandardMaterial;
           const isSelected = part.id === selectedId;
-          mat.emissive.setHex(isSelected ? 0x2f9fd4 : 0x000000);
-          mat.emissiveIntensity = isSelected ? 0.55 : 0;
+          // Realce na própria cor da peça (um emissive azul genérico puxava o
+          // matiz para lavanda).
+          mat.emissive.copy(mat.color);
+          mat.emissiveIntensity = isSelected ? 0.45 : 0;
         }
       };
 
