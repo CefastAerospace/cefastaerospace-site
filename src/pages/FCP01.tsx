@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { usePageTitle } from './usePageTitle';
 import { ArrowLeft, Package, Radio, Cpu, Battery, Shield, Box, Calendar, MapPin, Target, Github } from 'lucide-react';
 import { Section } from '../components/Shared';
-import Model3D from '../components/Model3D';
+import ModelExplorer from '../components/ModelExplorer';
 import type { CSSProperties } from 'react';
 
 const iconStyle: CSSProperties = { color: 'var(--cyan)' };
@@ -10,10 +10,7 @@ const iconStyleSmall: CSSProperties = { color: 'var(--cyan)' };
 
 // Modelo completo do FCP-01 (montagem SolidWorks "estrutura satélite (montada)").
 // Gerado com sldprt-export (MIT, lê a tesselação embutida + as peças da pasta),
-// depois simplificação + Draco: 113 MB de STL → 3,2 MB de GLB.
-const models3d = [
-  { id: 'satelite', src: 'models/fcp-01-satelite.glb', label: 'FCP-01 — Falcão Peregrino', alt: 'Satélite FCP-01 em modelo 3D interativo' },
-];
+// simplificado e comprimido em 7 peças separadas + Draco (32,6 MB → 1,79 MB).
 
 const subsystems = [
   { id: 'obc-dh', icon: Cpu, title: 'OBC&DH', desc: 'Computador de bordo e tratamento de dados — gerencia todos os subsistemas, processamento de telemetria e comandos.' },
@@ -82,20 +79,8 @@ export default function FCP01() {
 
       <Section id="fcp01-3d" title="Modelo 3D Interativo" aria-labelledby="models3d-title">
         <div className="container">
-          <p className="section-description">Explore componentes do FCP-01 em 3D — arraste para rotacionar, use scroll ou pinça para aproximar. No celular, toque no ícone de realidade aumentada para projetar o modelo no seu ambiente.</p>
-          <div className="project-grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))'}}>
-            {models3d.map((m) => (
-              <article key={m.id} className="project-card" style={{textAlign: 'left'}}>
-                <div className="project-image" style={{height: 'auto', padding: '8px 0'}}>
-                  <Model3D src={m.src} alt={m.alt} />
-                </div>
-                <div className="project-body">
-                  <h3>{m.label}</h3>
-                </div>
-              </article>
-            ))}
-          </div>
-          <p className="overline" style={{marginTop: '24px', textAlign: 'center'}}>Modelo 3D completo do satélite em breve</p>
+          <p className="section-description">Clique em qualquer peça — no modelo ou na lista ao lado — para ver o que ela faz. Use <strong>Explodir</strong> para separar as placas e a roda de reação; o chassi fica translúcido para revelar o interior. Arraste para girar.</p>
+          <ModelExplorer />
         </div>
       </Section>
 

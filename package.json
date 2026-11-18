@@ -18,7 +18,8 @@
     "lucide-react": "^0.468.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.18.4"
+    "react-router-dom": "^7.18.4",
+    "three": "^0.183.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -29,6 +30,7 @@
     "@types/jsdom": "^30.0.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
+    "@types/three": "^0.183.1",
     "@vitejs/plugin-react": "^4.4.0",
     "eslint": "^10.13.0",
     "eslint-plugin-react-hooks": "^7.1.1",
