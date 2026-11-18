@@ -146,7 +146,7 @@ export default function ModelExplorer() {
           // Realce na própria cor da peça (um emissive azul genérico puxava o
           // matiz para lavanda).
           mat.emissive.copy(mat.color);
-          mat.emissiveIntensity = isSelected ? 0.45 : 0;
+          mat.emissiveIntensity = isSelected ? 0.6 : 0;
         }
       };
 
@@ -281,10 +281,14 @@ export default function ModelExplorer() {
         for (const part of parts) {
           const mat = part.object.material as import('three').MeshStandardMaterial;
           const ghost = part.shell ? 1 - 0.72 * currentExplode : 1;
-          const dim = selectedId && part.id !== selectedId ? 0.5 : 1;
-          const opacity = Math.min(ghost, dim);
+          // Sem reduzir a opacidade das outras peças: elas ficam empilhadas na
+          // tela e a transparência acumulada deixaria o conjunto leitoso. O
+          // destaque é o brilho na própria cor (applySelection).
+          const opacity = ghost;
           mat.opacity = opacity;
-          mat.depthWrite = opacity > 0.9;
+          // Só a casca translúcida abre mão do depth write; com opacidade
+          // parcial as peças continuam recortando umas às outras (sem borrão).
+          mat.depthWrite = opacity > 0.4;
         }
 
         // Enquanto a explosão anima, reenquadra a cada quadro: a caixa cresce e
