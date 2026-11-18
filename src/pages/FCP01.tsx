@@ -8,8 +8,9 @@ import type { CSSProperties } from 'react';
 const iconStyle: CSSProperties = { color: 'var(--cyan)' };
 const iconStyleSmall: CSSProperties = { color: 'var(--cyan)' };
 
-// Modelo completo do FCP-01 (montagem SolidWorks "estrutura satélite (montada)"),
-// decodificado localmente e otimizado (simplificação 25% + Draco: 42,6 MB → 921 KB).
+// Modelo completo do FCP-01 (montagem SolidWorks "estrutura satélite (montada)").
+// Gerado com sldprt-export (MIT, lê a tesselação embutida + as peças da pasta),
+// depois simplificação + Draco: 113 MB de STL → 3,2 MB de GLB.
 const models3d = [
   { id: 'satelite', src: 'models/fcp-01-satelite.glb', label: 'FCP-01 — Falcão Peregrino', alt: 'Satélite FCP-01 em modelo 3D interativo' },
 ];

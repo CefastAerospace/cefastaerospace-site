@@ -49,8 +49,8 @@ export default function Model3D({src,alt,style}:Model3DProps){
       camera-controls="true"
       auto-rotate="true"
       rotation-per-second="30deg"
-      shadow-intensity="1"
-      exposure="1"
+      shadow-intensity="0.8"
+      exposure="0.4"
       interaction-prompt="none"
       style={{width:'100%',height:'300px',display:'block',background:'transparent',...style}}
     />
